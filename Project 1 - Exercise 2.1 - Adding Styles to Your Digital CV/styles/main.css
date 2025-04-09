@@ -1,0 +1,49 @@
+/* Styling for the entire document */
+body {
+    font-family: Arial, Helvetica, sans-serif; /* Use a common font stack as a fallback */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-size: 16px; /* Set a base font size */
+    line-height: 1.5; /* Set a moderate line height for better readability */
+    color: #000000; /* Set a dark color for the text */
+    background-color: #16c5d1; /* Set a light blue color as background */
+}
+/* Styling for hyperlinks */
+a {
+    text-decoration: none; /* Remove default underline from links */
+    color: #91081f; /* Set a dark red color for links */
+}
+/* Styling for hyperlinks on hover */
+a:hover {
+    /* text-decoration: underline; */ /* Add underline on hover for links */
+    background-color: blueviolet;
+    color: burlywood;
+}
+/* Styling for main heading */
+h1 {
+    font-size: 3em; /* Set a larger font size for main headings */
+    text-shadow: 2px 2px 5px rgba(22, 0, 225, 0.5); /* Add a drop shadow effect for emphasis */
+    text-align: center; /* Align the main heading to the center */
+    color: #91081f; /* Set a dark red color for main headings */
+}
+/* Styling for sub heading */
+h2 {
+    font-size: 2em; /* Set a moderate font size for sub-headings */
+    font-weight: 600; /* Make it slightly bolder for differentiation */
+    text-transform: uppercase; /* Convert text to uppercase for visual prominence */
+    color: #2d0891; /* Set a dark blue color for sub-headings */
+ }
+img {
+    max-width: 100%; /* Make images responsive by setting a maximum width */
+    height: auto; /* Maintain aspect ratio of images */
+    display: block; /* Remove default inline display for images */
+    margin: 0 auto; /* Center images horizontally */
+    border:#740316 3px solid; /* Add a border around images */
+}
+section {
+    margin: 20px; /* Add some space around each section */
+    padding: 20px; /* Add some padding inside each section */
+    background-color: #f9f9f9; /* Set a light gray color as background for sections */
+    border-radius: 10px; /* Add rounded corners to sections */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect for depth */
+}

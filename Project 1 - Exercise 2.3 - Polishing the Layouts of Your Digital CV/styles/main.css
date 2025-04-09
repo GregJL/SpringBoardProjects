@@ -1,0 +1,111 @@
+/* Styling for the entire document */
+/* Use border-box in all elements. */
+*
+{
+  box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif; /* Use a common font stack as a fallback */
+    margin: 0 2rem; /* Remove default margin */
+    padding: 0 2rem; /* Remove default padding */
+    font-size: 16px; /* Set a base font size */
+    line-height: 1.5; /* Set a moderate line height for better readability */
+    color: #000000; /* Set a dark color for the text */
+    border: 2px solid #000000;
+    background-color: #16c5d1; /* Set a light blue color as background */
+}
+/* Styling for hyperlinks */
+a {
+    text-decoration: none; /* Remove default underline from links */
+    color: #91081f; /* Set a dark red color for links */
+}
+/* Styling for hyperlinks on hover */
+a:hover {
+    /* text-decoration: underline; */ /* Add underline on hover for links */
+    background-color: blueviolet;
+    color: burlywood;
+}
+/* Styling for main heading */
+h1 {
+    font-size: 3em; /* Set a larger font size for main headings */
+    text-shadow: 2px 2px 5px rgba(22, 0, 225, 0.5); /* Add a drop shadow effect for emphasis */
+    text-align: center; /* Align the main heading to the center */
+    color: #91081f; /* Set a dark red color for main headings */
+}
+/* Styling for sub heading */
+h2 {
+    font-size: 2em; /* Set a moderate font size for sub-headings */
+    font-weight: 600; /* Make it slightly bolder for differentiation */
+    text-transform: uppercase; /* Convert text to uppercase for visual prominence */
+    color: #2d0891; /* Set a dark blue color for sub-headings */
+ }
+ /* Apply padding below headers to provide spacing and ensure content doesn't feel cramped. */
+h1, h2
+{
+  padding-bottom: 1rem;
+}
+
+header section {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Separate items from each other in the x-axis */
+    align-items: center; /* Align items vertically in the center */
+    height: 20rem; /* Set a fixed height for the header section */
+    margin-bottom: 2rem; /* Add some space below the header section */
+}
+header section div.profile-image-container {
+  align-self: flex-start; /* Align the profile image container to the start of the flex container */
+  /* Makes the image shape square. */
+  width: 15rem;
+  height: 15rem;
+}
+.profile-pic {
+  width: 100%;
+  height: 100%; /* Fits into container div */
+  display: block; /* Remove default inline display for images */
+  border:#740316 3px solid; /* Add a border around images */
+  border-radius: 50%; /* Make profile picture circular by setting a border radius of 50% */
+  object-fit: cover; /* Crop the image to fit the container */
+}
+header section div.profile-name-container {
+    align-self: center; /* Align the profile name container to the center of the flex container */
+}
+header section div.profile-contact-container {
+    align-self: flex-end; /* Positions itself to the end of y-axis. */
+}
+/* Separate sections with margins to utilize collapsing margins. Also, use borders to space them apart. */
+main section,
+footer section
+{
+  /*padding: 20px; /* Add some padding inside each section */
+  margin: 4rem 0;
+  border-top: 4px solid #700505;
+  /*background-color: #f9f9f9; /* Set a light gray color as background for sections */
+  /*border-radius: 10px; /* Add rounded corners to sections */
+  box-shadow: 0 0 10px rgba(233, 236, 4, 0.1); /* Add a subtle shadow effect for depth */
+}
+::placeholder {
+    color: #000000; /* Set a dark color for placeholder text */
+}
+/* Adjust form elements to capture same look and feel. */
+form input,
+form textarea,
+form select
+{
+  padding: 0.1rem 0.2rem;
+  border: 2px dotted #700505;
+  background-color: #16c5d1;
+}
+
+form button
+{
+  padding: 0.5rem 1rem;
+  border: 2px solid #700505;
+  background-color: #16c5d1;
+}
+
+/* Remove outlines from form elements, ensuring a cleaner look. */
+form input,
+form textarea
+{
+  outline: none;
+}

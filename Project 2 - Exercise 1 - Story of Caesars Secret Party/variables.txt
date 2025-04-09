@@ -1,0 +1,7 @@
+partyLocation
+partyDate
+partyTime
+letterValueShift
+encMsg
+decMsg
+isItSafe

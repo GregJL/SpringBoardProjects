@@ -1,0 +1,4 @@
+Local Storage Exercise
+Debugging Exercise
+Error Handling Exercise
+9.3-9 APIs Exercise

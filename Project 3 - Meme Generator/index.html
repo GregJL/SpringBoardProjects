@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <h1>Meme Generator</h1>
+    <section class="meme-generator">
+        <div class="meme-preview">
+            <img id="img-preview" src="" alt="Meme Preview">
+            <h2 id="top-text-preview" class="top-text-display" >Top Text</h2>
+            <h2 id="bottom-text-preview" class="bottom-text-display">Bottom Text</h2>
+            </div>
+        </div>
+        <div class="meme-form">
+        <form id="meme-form" >
+            <input type="text" id="image-url" placeholder="Image URL (required)" required>
+            <input type="text" id="top-text" placeholder="Top Text (optional)">
+            <input type="text" id="bottom-text" placeholder="Bottom Text (optional)">
+            <button type="submit" class="meme-generator">Generate Meme</button>
+        </form>
+        </div>
+        <div id="meme-settings">
+            <h2>Meme Settings</h2>
+            <!--<button class="meme-settings-toggle">Show Meme Settings</button>-->
+            <form id="settings-form" class="settings-form">
+                <label for="top-text-font-family">Top Text Font Family</label>
+                <select id="top-text-font-family">
+                    <option value="Arial, Helvetica, sans-serif">Arial</option>
+                    <option value="Verdana, Geneva, Tahoma, sans-serif">Verdana</option>
+                    <option value="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Impact</option>
+                    <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Tahoma</option>
+                    <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                </select>
+                <input type="text" id="top-text-font-size" placeholder="Top Text Font size">
+                <input type="text" id="top-text-font-color" placeholder="Top Text Font Color">
+                <label for="bottom-text-font-family">Bottom Text Font Family</label>
+                <select id="bottom-text-font-family">
+                    <option value="Arial, Helvetica, sans-serif">Arial</option>
+                    <option value="Verdana, Geneva, Tahoma, sans-serif">Verdana</option>
+                    <option value="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Impact</option>
+                    <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Tahoma</option>
+                    <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                </select>
+                <input type="text" id="bottom-text-font-size" placeholder="Bottom Text Font size">
+                <input type="text" id="bottom-text-font-color" placeholder="Bottom Text Font Color">
+                <button type="submit" id="meme-settings-btn">Save Meme Settings</button>
+            </form>
+        </div>
+    </section>
+    <section id="meme-section"></section>
+</body>
+</html>
