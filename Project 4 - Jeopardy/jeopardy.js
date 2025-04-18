@@ -74,7 +74,8 @@ let categories = []; // The categories with clues fetched from the API.
  */
 
 let activeClue = null; // Currently selected clue data.
-let activeClueMode = 0; // Controls the flow of #active-clue element while selecting a clue, displaying the question of selected clue, and displaying the answer to the question.
+let activeClueMode = 0; // Controls the flow of #active-clue element while selecting a clue, displaying the question of selected clue, 
+// and displaying the answer to the question.
 /*
 0: Empty. Waiting to be filled. If a clue is clicked, it shows the question (transits to 1).
 1: Showing a question. If the question is clicked, it shows the answer (transits to 2).
@@ -95,6 +96,16 @@ $("#play").on("click", handleClickOfPlay);
 function handleClickOfPlay ()
 {
   // todo set the game up if the play button is clickable
+  if (isPlayButtonClickable)
+  {
+    isPlayButtonClickable = false;
+    $("#play").text("Loading...");
+    setupTheGame();
+  }
+  else
+  {
+    console.log("The game is already in progress!");
+  }
 }
 
 /**
@@ -111,12 +122,39 @@ function handleClickOfPlay ()
 async function setupTheGame ()
 {
   // todo show the spinner while setting up the game
-
+  $("#spinner").removeClass("disabled");
+  
   // todo reset the DOM (table, button text, the end text)
+  $("#active-clue").html(null);
+
 
   // todo fetch the game data (categories with clues)
-
+  let resCategories = await axios.get(`${API_URL}categories?count=${NUMBER_OF_CATEGORIES}`)
+  categories = resCategories.data.map(category => {
+    return {
+      id: category.id,
+      title: category.title,
+      clues: []
+    }
+  }
+  );
+  for (let i = 0; i < categories.length; i++) {
+    let resCategory = await axios.get(`${API_URL}category?id=${categories[i].id}`);
+    
+    categories[i].clues = resCategory.data.clues.slice(0, NUMBER_OF_CLUES_PER_CATEGORY).map(clue => {
+      return {
+        id: clue.id,
+        value: clue.value || 200,
+        question: clue.question,
+        answer: clue.answer
+      }
+    });
+    categories[i].title = resCategory.data.title;  
+  }
+  // todo hide the spinner
+  $("#spinner").addClass("disabled");
   // todo fill the table
+  fillTable(categories);
 }
 
 /**
@@ -186,6 +224,43 @@ async function getCategoryData (categoryId)
 function fillTable (categories)
 {
   // todo
+  // todo create the table head (thead) and body (tbody)
+  // todo create the table row for categories and append to the table head (thead)
+  // todo create the table row for clues and append to the table body (tbody)
+  // todo create the table row for each clue and append to the corresponding cell element (td)
+  // todo set the ID of the clue row with category and clue IDs
+  // todo append the clue row to the corresponding cell element (td)
+  // todo append the table head (thead) and body (tbody) to the table
+  const tableHead = $("#categories");
+  const tableBody = $("#clues");
+  tableHead.empty(); // Clear previous content
+  tableBody.empty(); // Clear previous content
+  const categoriesRow = document.getElementById("categories");
+  categoriesRow.innerHTML = ""; // Clear previous content
+  const cluesRow = document.getElementById("clues");
+  cluesRow.innerHTML = ""; // Clear previous content
+  for (let i = 0; i < NUMBER_OF_CATEGORIES; i++) {
+    const categoryTitle = document.createElement("th");
+    categoryTitle.innerText = categories[i].title;
+    categoriesRow.append(categoryTitle);
+  }
+  for (let y = 0; y < NUMBER_OF_CLUES_PER_CATEGORY; y++) {
+    const row = document.createElement("tr");
+    for (let x = 0; x < NUMBER_OF_CATEGORIES; x++) {
+      const category = categories[x];
+      const clues = category.clues;
+      const cell = document.createElement("td");
+      const clue = clues[y];
+      console.log(clue);
+			cell.innerHTML = `<div id=${category.id}-${clue.id}>${clue.value}</div>`;
+			row.append(cell);
+		}
+		tableBody.append(row);
+	}
+  
+
+  
+
 }
 
 $(".clue").on("click", handleClickOfClue);
