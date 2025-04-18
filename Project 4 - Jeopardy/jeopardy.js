@@ -101,6 +101,8 @@ function handleClickOfPlay ()
     isPlayButtonClickable = false;
     $("#play").text("Loading...");
     setupTheGame();
+    $("#play").text("Game in Progress!");
+    
   }
   else
   {
@@ -155,6 +157,8 @@ async function setupTheGame ()
   $("#spinner").addClass("disabled");
   // todo fill the table
   fillTable(categories);
+  $(".clue").on("click", handleClickOfClue);
+
 }
 
 /**
@@ -223,14 +227,6 @@ async function getCategoryData (categoryId)
  */
 function fillTable (categories)
 {
-  // todo
-  // todo create the table head (thead) and body (tbody)
-  // todo create the table row for categories and append to the table head (thead)
-  // todo create the table row for clues and append to the table body (tbody)
-  // todo create the table row for each clue and append to the corresponding cell element (td)
-  // todo set the ID of the clue row with category and clue IDs
-  // todo append the clue row to the corresponding cell element (td)
-  // todo append the table head (thead) and body (tbody) to the table
   const tableHead = $("#categories");
   const tableBody = $("#clues");
   tableHead.empty(); // Clear previous content
@@ -241,7 +237,8 @@ function fillTable (categories)
   cluesRow.innerHTML = ""; // Clear previous content
   for (let i = 0; i < NUMBER_OF_CATEGORIES; i++) {
     const categoryTitle = document.createElement("th");
-    categoryTitle.innerText = categories[i].title;
+    categoryTitle.setAttribute("id", categories[i].id);
+    categoryTitle.innerHTML = categories[i].title;
     categoriesRow.append(categoryTitle);
   }
   for (let y = 0; y < NUMBER_OF_CLUES_PER_CATEGORY; y++) {
@@ -251,8 +248,7 @@ function fillTable (categories)
       const clues = category.clues;
       const cell = document.createElement("td");
       const clue = clues[y];
-      console.log(clue);
-			cell.innerHTML = `<div id=${category.id}-${clue.id}>${clue.value}</div>`;
+			cell.innerHTML = `<div class=clue id=${category.id}-${clue.id}>${clue.value}</div>`;
 			row.append(cell);
 		}
 		tableBody.append(row);
@@ -263,7 +259,6 @@ function fillTable (categories)
 
 }
 
-$(".clue").on("click", handleClickOfClue);
 
 /**
  * Manages the behavior when a clue is clicked.
@@ -279,6 +274,35 @@ $(".clue").on("click", handleClickOfClue);
 function handleClickOfClue (event)
 {
   // todo find and remove the clue from the categories
+  const clueElement = event.target;
+  const clueId = clueElement.id.split("-")[1];
+  const categoryId = clueElement.id.split("-")[0];
+  const category = categories.find(cat => cat.id == categoryId);
+  const clue = category.clues.find(clue => clue.id == clueId);
+  if (activeClueMode === 0)
+  {
+    activeClueMode = 1;
+    activeClue = clue;
+    clueElement.classList.add("question");
+    clueElement.innerHTML = clue.question;
+    const activeClueElement = document.getElementById("active-clue");
+    activeClueElement.innerHTML = clue.question;
+    activeClueElement.setAttribute("data-clue-element-id", clueElement.id);
+    activeClueElement.classList.add("active-question");
+
+    categories.forEach(cat => {
+      cat.clues = cat.clues.filter(c => c.id.toString() !== clueId);
+
+      if (cat.clues.length === 0) {
+        $(`#${cat.id}`).html(null);
+        categories = categories.filter(c => c.id.toString() !== categoryId);
+      }
+    });
+  }
+  else
+  {
+    return;
+  }
 
   // todo mark clue as viewed (you can use the class in style.css), display the question at #active-clue
 }
@@ -297,26 +321,29 @@ $("#active-clue").on("click", handleClickOfActiveClue);
  */
 function handleClickOfActiveClue (event)
 {
-  // todo display answer if displaying a question
-
-  // todo clear if displaying an answer
   // todo after clear end the game when no clues are left
-
+  const activeClueElement = document.getElementById("active-clue");
+  const activeClueElementId = activeClueElement.getAttribute("data-clue-element-id");
   if (activeClueMode === 1)
   {
     activeClueMode = 2;
-    $("#active-clue").html(activeClue.answer);
+    activeClueElement.innerHTML = activeClue.answer;
+    $("#" + activeClueElementId).html(activeClue.answer);
+
   }
   else if (activeClueMode === 2)
   {
     activeClueMode = 0;
-    $("#active-clue").html(null);
+    activeClueElement.innerHTML = "";
+    activeClueElement.classList.remove("active-question");
+    $("#" + activeClueElementId).html(null);
+    activeClueElement.removeAttribute("data-clue-element-id");
 
     if (categories.length === 0)
     {
       isPlayButtonClickable = true;
       $("#play").text("Restart the Game!");
-      $("#active-clue").html("The End!");
+      activeClueElement.innerHTML = "The End!";
     }
   }
 }

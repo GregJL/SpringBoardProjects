@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 body {
-    background-color: #fbfcfb;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,21 +21,31 @@ body {
 
 #jeopardy-board th,
 #jeopardy-board td {
-    background-color: #060ce9;
+    background-color: #1B5FAA;
+    border: solid 1px white;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px;
+    width: 12em;
+    text-transform: uppercase;}
+
+.active-question {
+    background-color: #1B5FAA;
+    font-size: 24px;
+    color: white;
     border: solid 1px white;
     width: 12em;
-}
-
-th {
+    height: 12em;
+    text-align: center;
+    margin: 20px auto;
     text-transform: uppercase;
-    font-family: Helvetica, sans-serif;
+}
+th {
     font-weight: bold;
     height: 4em;
 }
 
 td {
     height: 9em;
-    font-family: Copse, serif;
 }
 
 td:hover {
@@ -51,7 +62,7 @@ div {
 button {
     margin-top: 2rem;
     padding: 10px;
-    background-color: #060ce9;
+    background-color: #1B5FAA;
     color: white;
     border: solid 1px white;
 }
