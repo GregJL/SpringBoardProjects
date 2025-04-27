@@ -40,7 +40,7 @@ const API_URL = "https://rithm-jeopardy.herokuapp.com/api/"; // The URL of the A
 const NUMBER_OF_CATEGORIES = 6; // The number of categories you will be fetching. You can change this number.
 const NUMBER_OF_CLUES_PER_CATEGORY = 5; // The number of clues you will be displaying per category. You can change this number.
 
-let categories = []; // The categories with clues fetched from the API.
+let categories = []; // The categories with clues fetched from the API
 /*
 [
   {
