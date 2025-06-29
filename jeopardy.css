@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#jeopardy-board {
+    margin-top: 5rem;
+    text-align: center;
+    font-size: 9pt;
+    color: white;
+    border-collapse: collapse;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#jeopardy-board th,
+#jeopardy-board td {
+    background-color: #060ce9;
+    border: solid 1px white;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px;
+    width: 12em;
+    text-transform: uppercase;}
+
+.active-question {
+    background-color: #060ce9;
+    font-size: 24px;
+    color: white;
+    border: solid 1px white;
+    width: 12em;
+    height: 12em;
+    text-align: center;
+    margin: 20px auto;
+    text-transform: uppercase;
+}
+th {
+    font-weight: bold;
+    height: 4em;
+}
+
+td {
+    height: 9em;
+}
+
+td:hover {
+    cursor: pointer;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+button {
+    margin-top: 2rem;
+    padding: 10px;
+    background-color: #060ce9;
+    color: white;
+    border: solid 1px white;
+}
